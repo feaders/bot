@@ -12,10 +12,6 @@
   },
   "author": "",
   "license": "ISC",
-      "engines": {
-      "node": "9.7.1",
-      "npm": "6.4.1"
-    },
   "dependencies": {
     "body-parser": "^1.18.3",
     "dialogflow": "^0.8.2",
@@ -23,5 +19,8 @@
     "request": "^2.88.0",
     "uuid": "^3.3.2"
   },     
-  
+  "engines": {
+      "node": "9.7.1",
+      "npm": "6.4.1"
+    }
 }
