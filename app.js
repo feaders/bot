@@ -224,7 +224,7 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters) 
                 let mail = (isDefined(contexts[0].parameters.fields['mail']) && contexts[0].parameters.fields['mail'] != '') ? contexts[0].parameters.fields['mail'].stringValue :'' ;
 
 
-            }
+            
             if(nom != '' && age !='' && num != '' && mail !=''){
                 let emailContent = 'Bonjour, <br> '+ nom + "  " + num + " " +mail +" "+ age;
                 sendEmail('Test Bot', emailContent);
@@ -234,6 +234,7 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters) 
             else{
                 handleMessages(messages, sender);
             }
+        }
         break;
         default:
             //unhandled action, just send back the text
