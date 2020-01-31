@@ -204,6 +204,29 @@ function handleEcho(messageId, appId, metadata) {
 
 function handleDialogFlowAction(sender, action, messages, contexts, parameters) {
     switch (action) {
+
+        case "mail":
+            let filteredContexts = contexts.filter(function (el){
+                return el.name.include('information')
+            });
+            if(filteredContexts.length > 0 && contexts[0].parameters){
+                let nom = (fbService.isDefined(contexts[0].parameters.fields['nom']) &&contexts[0].parameters.fields['nom'] != '') ? contexts[0].parameters.fields['nom'].stringValue :'' ;
+                let age = (fbService.isDefined(contexts[0].parameters.fields['age']) &&contexts[0].parameters.fields['age'] != '') ? contexts[0].parameters.fields['age'].stringValue :'' ;
+                let num = (fbService.isDefined(contexts[0].parameters.fields['num']) &&contexts[0].parameters.fields['num'] != '') ? contexts[0].parameters.fields['num'].stringValue :'' ;
+                let mail = (fbService.isDefined(contexts[0].parameters.fields['mail']) &&contexts[0].parameters.fields['mail'] != '') ? contexts[0].parameters.fields['mail'].stringValue :'' ;
+
+
+            }
+            if(nom != '' && age !='' && num != '' && mail !=''){
+                let emailContent = 'Bonjour, <br> '+ nom + "  " + num + " " +mail +" "+ age;
+                sendEmail('Test Bot', emailContent);
+                handleMessages(messages, sender);
+
+            }
+            else{
+                handleMessages(messages, sender);
+            }
+        break;
         default:
             //unhandled action, just send back the text
             
@@ -238,7 +261,24 @@ function handleMessage(message, sender) {
             break;
     }
 }
-
+function sendEmail(subject, content){
+    console.log("envoie du mail");
+    const sgMail = require('@sengrid/mail');
+    sgMail.setApiKey(config.SENDGRID_API_KEY);
+    const msg ={
+        to : config.EMAIL_TO,
+        from : config.EMAIL_FROM,
+        subject: subject,
+        text: content,
+        html: content,
+    }
+    sgMail.send(msg).then(()=>{
+        console.log("mail envoyé");
+    }).catch(error=> {
+        console.log("erreur d'evoie");
+        console.log(error.toString());
+    });
+}
 
 function handleCardMessages(messages, sender) {
 
