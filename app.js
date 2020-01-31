@@ -211,6 +211,7 @@ function handleEcho(messageId, appId, metadata) {
 }
 
 function handleDialogFlowAction(sender, action, messages, contexts, parameters) {
+    console.log(action);
     switch (action) {
 
         case "mail":
