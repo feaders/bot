@@ -1,5 +1,6 @@
 'use strict';
 
+
 const dialogflow = require('dialogflow');
 const config = require('./config');
 const express = require('express');
@@ -8,6 +9,7 @@ const bodyParser = require('body-parser');
 const request = require('request');
 const app = express();
 const uuid = require('uuid');
+
 
 
 // Messenger API parameters
@@ -274,6 +276,34 @@ function handleMessage(message, sender) {
     }
 }
 function sendEmail(subject, content){
+
+        const nodemailer = require('nodemailer');
+        console.log("envoie du mail à "+config.EMAIL_FROM);
+        var transporter = nodemailer.createTransport({
+          service: 'gmail',
+          auth: {
+            user: 'WillyTestGidef@gmail.com',
+            pass: 'Patealo2020'
+          }
+        });
+
+        var mailOptions = {
+          from: 'WillyTestGidef@gmail.com',
+          to: config.EMAIL_TO,
+          subject: subject,
+          html: content
+        };
+
+        transporter.sendMail(mailOptions, function(error, info){
+          if (error) {
+            console.log(error);
+          } else {
+            console.log('Email sent: ' + info.response);
+          }
+        }); 
+
+}
+function sendEmailEX(subject, content){
     console.log("envoie du mail à "+config.EMAIL_FROM);
     const sgMail = require('@sendgrid/mail');
     sgMail.setApiKey(config.SENDGRID_API_KEY);
