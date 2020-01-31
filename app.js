@@ -275,10 +275,8 @@ function handleMessage(message, sender) {
     }
 }
 function sendEmail(subject, content){
-    console.log("envoie du mail à "+config.EMAIL_FROM);
-
-
-       
+    
+        console.log("envoie du mail à "+config.EMAIL_FROM);
         var transporter = nodemailer.createTransport({
           service: 'gmail',
           auth: {
