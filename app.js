@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const request = require('request');
 const app = express();
 const uuid = require('uuid');
+const nodemailer = require('nodemailer');
 
 
 // Messenger API parameters
@@ -277,7 +278,7 @@ function sendEmail(subject, content){
     console.log("envoie du mail à "+config.EMAIL_FROM);
 
 
-        var nodemailer = require('nodemailer');
+       
         var transporter = nodemailer.createTransport({
           service: 'outlook',
           auth: {
