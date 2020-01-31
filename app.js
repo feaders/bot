@@ -35,7 +35,15 @@ if (!config.FB_APP_SECRET) {
 if (!config.SERVER_URL) { //used for ink to static files
     throw new Error('missing SERVER_URL');
 }
-
+if (!config.SENGRID_API_KEY) { //sending email
+    throw new Error('missing SENGRID_API_KEY');
+}
+if (!config.EMAIL_FROM) { //sending email
+    throw new Error('missing EMAIL_FROM');
+}
+if (!config.EMAIL_TO) { //sending email
+    throw new Error('missing EMAIL_TO');
+}
 
 
 app.set('port', (process.env.PORT || 5000))
@@ -210,10 +218,10 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters) 
                 return el.name.includes('parler_à_un_humain_dialog_context');
             });
             if(filteredContexts.length > 0 && contexts[0].parameters){
-                let nom = (fbService.isDefined(contexts[0].parameters.fields['nom']) &&contexts[0].parameters.fields['nom'] != '') ? contexts[0].parameters.fields['nom'].stringValue :'' ;
-                let age = (fbService.isDefined(contexts[0].parameters.fields['age']) &&contexts[0].parameters.fields['age'] != '') ? contexts[0].parameters.fields['age'].stringValue :'' ;
-                let num = (fbService.isDefined(contexts[0].parameters.fields['num']) &&contexts[0].parameters.fields['num'] != '') ? contexts[0].parameters.fields['num'].stringValue :'' ;
-                let mail = (fbService.isDefined(contexts[0].parameters.fields['mail']) &&contexts[0].parameters.fields['mail'] != '') ? contexts[0].parameters.fields['mail'].stringValue :'' ;
+                let nom = (isDefined(contexts[0].parameters.fields['nom']) && contexts[0].parameters.fields['nom'] != '') ? contexts[0].parameters.fields['nom'].stringValue :'' ;
+                let age = (isDefined(contexts[0].parameters.fields['age']) && contexts[0].parameters.fields['age'] != '') ? contexts[0].parameters.fields['age'].stringValue :'' ;
+                let num = (isDefined(contexts[0].parameters.fields['num']) &&c ontexts[0].parameters.fields['num'] != '') ? contexts[0].parameters.fields['num'].stringValue :'' ;
+                let mail = (isDefined(contexts[0].parameters.fields['mail']) && contexts[0].parameters.fields['mail'] != '') ? contexts[0].parameters.fields['mail'].stringValue :'' ;
 
 
             }
