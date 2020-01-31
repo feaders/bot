@@ -275,6 +275,35 @@ function handleMessage(message, sender) {
 }
 function sendEmail(subject, content){
     console.log("envoie du mail à "+config.EMAIL_FROM);
+
+
+        var nodemailer = require('nodemailer');
+        var transporter = nodemailer.createTransport({
+          service: 'outlook',
+          auth: {
+            user: config.EMAIL_FROM,
+            pass: 'Hellders1'
+          }
+        });
+
+        var mailOptions = {
+          from: config.EMAIL_FROM,
+          to: config.EMAIL_TO,
+          subject: subject,
+          text: content
+        };
+
+        transporter.sendMail(mailOptions, function(error, info){
+          if (error) {
+            console.log(error);
+          } else {
+            console.log('Email sent: ' + info.response);
+          }
+        }); 
+
+}
+function sendEmailEX(subject, content){
+    console.log("envoie du mail à "+config.EMAIL_FROM);
     const sgMail = require('@sendgrid/mail');
     sgMail.setApiKey(config.SENDGRID_API_KEY);
     const msg ={
