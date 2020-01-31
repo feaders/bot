@@ -207,7 +207,7 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters) 
 
         case "mail":
             let filteredContexts = contexts.filter(function (el){
-                return el.name.include('information')
+                return el.name.include('parler_à_un_humain_dialog_context')
             });
             if(filteredContexts.length > 0 && contexts[0].parameters){
                 let nom = (fbService.isDefined(contexts[0].parameters.fields['nom']) &&contexts[0].parameters.fields['nom'] != '') ? contexts[0].parameters.fields['nom'].stringValue :'' ;
