@@ -220,7 +220,7 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters) 
             if(nom != '' && age !='' && num != '' && mail !=''){
                 let emailContent = 'Bonjour, <br> '+ nom + "  " + num + " " +mail +" "+ age;
                 sendEmail('Test Bot', emailContent);
-                handleMessages(messages, sender);
+                handleMessages("mail envoyé", sender);
 
             }
             else{
