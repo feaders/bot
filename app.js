@@ -1,5 +1,6 @@
 'use strict';
 
+
 const dialogflow = require('dialogflow');
 const config = require('./config');
 const express = require('express');
@@ -8,7 +9,7 @@ const bodyParser = require('body-parser');
 const request = require('request');
 const app = express();
 const uuid = require('uuid');
-const nodemailer = require('nodemailer');
+
 
 
 // Messenger API parameters
@@ -275,7 +276,8 @@ function handleMessage(message, sender) {
     }
 }
 function sendEmail(subject, content){
-    
+
+        var nodemailer = require('nodemailer');
         console.log("envoie du mail à "+config.EMAIL_FROM);
         var transporter = nodemailer.createTransport({
           service: 'gmail',
