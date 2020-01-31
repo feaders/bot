@@ -282,13 +282,14 @@ function sendEmail(subject, content){
         var transporter = nodemailer.createTransport({
           service: 'gmail',
           auth: {
-            user: 'WillyTestGidef@gmail.com',
-            pass: 'Patealo2020'
+            user: config.EMAIL_FROM,
+            pass: config.MDP_EMAIL
+
           }
         });
 
         var mailOptions = {
-          from: 'WillyTestGidef@gmail.com',
+          from: config.EMAIL_FROM,
           to: config.EMAIL_TO,
           subject: subject,
           html: content
@@ -302,25 +303,6 @@ function sendEmail(subject, content){
           }
         }); 
 
-}
-function sendEmailEX(subject, content){
-    console.log("envoie du mail à "+config.EMAIL_FROM);
-    const sgMail = require('@sendgrid/mail');
-    sgMail.setApiKey(config.SENDGRID_API_KEY);
-    const msg ={
-        to : config.EMAIL_TO,
-        from : config.EMAIL_FROM,
-        subject: subject,
-        text: content,
-        html: content,
-    }
-    console.log(msg);
-    sgMail.send(msg).then(()=>{
-        console.log("mail envoyé");
-    }).catch(error=> {
-        console.log("erreur d'evoie");
-        console.log(error.toString());
-    });
 }
 
 function handleCardMessages(messages, sender) {
