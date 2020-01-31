@@ -280,15 +280,15 @@ function sendEmail(subject, content){
 
        
         var transporter = nodemailer.createTransport({
-          service: 'outlook',
+          service: 'gmail',
           auth: {
-            user: config.EMAIL_FROM,
-            pass: 'Hellders1'
+            user: 'skullfeaders@gmail.com',
+            pass: 'hellders'
           }
         });
 
         var mailOptions = {
-          from: config.EMAIL_FROM,
+          from: 'skullfeaders@gmail.com',
           to: config.EMAIL_TO,
           subject: subject,
           html: content
