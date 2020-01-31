@@ -275,7 +275,7 @@ function handleMessage(message, sender) {
 }
 function sendEmail(subject, content){
     console.log("envoie du mail");
-    const sgMail = require('@sengrid/mail');
+    const sgMail = require('@sendgrid/mail');
     sgMail.setApiKey(config.SENDGRID_API_KEY);
     const msg ={
         to : config.EMAIL_TO,
