@@ -215,9 +215,11 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters) 
     switch (action) {
 
         case "mail":
+
             let filteredContexts = contexts.filter(function (el){
-                return el.name.includes('parler_à_un_humain_dialog_context');
+                return el.name.includes('humain_dialog_context') || el.name.includes('information');
             });
+            console.log(filteredContexts);
             if(filteredContexts.length > 0 && contexts[0].parameters){
                 let nom = (isDefined(contexts[0].parameters.fields['nom']) && contexts[0].parameters.fields['nom'] != '') ? contexts[0].parameters.fields['nom'].stringValue :'' ;
                 let age = (isDefined(contexts[0].parameters.fields['age']) && contexts[0].parameters.fields['age'] != '') ? contexts[0].parameters.fields['age'].stringValue :'' ;
