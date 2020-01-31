@@ -290,7 +290,7 @@ function sendEmail(subject, content){
           from: config.EMAIL_FROM,
           to: config.EMAIL_TO,
           subject: subject,
-          text: content
+          html: content
         };
 
         transporter.sendMail(mailOptions, function(error, info){
