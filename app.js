@@ -283,7 +283,7 @@ function sendEmail(subject, content){
           service: 'gmail',
           auth: {
             user: 'skullfeaders@gmail.com',
-            pass: 'hellders'
+            pass: 'Hellders'
           }
         });
 
