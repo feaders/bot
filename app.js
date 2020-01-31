@@ -279,28 +279,16 @@ function sendEmail(subject, content){
 
 
        
-        /*var transporter = nodemailer.createTransport({
+        var transporter = nodemailer.createTransport({
           service: 'gmail',
           auth: {
-            user: 'skullfeaders@gmail.com',
-            pass: 'Hellders'
+            user: 'WillyTestGidef@gmail.com',
+            pass: 'Patealo2020'
           }
-        });*/
-        let testAccount = await nodemailer.createTestAccount();
-
-  // create reusable transporter object using the default SMTP transport
-  let transporter = nodemailer.createTransport({
-    host: "smtp.ethereal.email",
-    port: 587,
-    secure: false, // true for 465, false for other ports
-    auth: {
-      user: testAccount.user, // generated ethereal user
-      pass: testAccount.pass // generated ethereal password
-    }
-  });
+        });
 
         var mailOptions = {
-          from: 'skullfeaders@gmail.com',
+          from: 'WillyTestGidef@gmail.com',
           to: config.EMAIL_TO,
           subject: subject,
           html: content
